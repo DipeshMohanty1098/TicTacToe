@@ -1,20 +1,20 @@
 import os
 clear  = lambda: os.system('cls')
-grid = [0,0,0,0,0,0,0,0,0]
+grid = [0]*9
 turn = 0
 
 
 def player1():
     turn = int(input("player 1 enter position: "))
-    while turn not in (1, 2, 3, 4, 5, 6, 7, 8, 9):
-        print("Position not present! Enter again!")
+    while turn not in ('1', '2', '3', '4', '5', '6', '7', '8', '9'):
+        print("Invalid Position! Enter again!")
         turn = int(input("player 1 enter position: "))
-    res = check_pos(turn)
+    res = check_pos(int(turn))
     if res == 0:
         print("Position taken! Pls enter position again")
         player1()
     else:
-        grid[turn - 1] = 'X'
+        grid[int(turn) - 1] = 'X'
 
 
 def print_board(grid):
@@ -24,16 +24,16 @@ def print_board(grid):
 
 
 def player2():
-    turn = int(input("player 2 enter position: "))
-    while turn not in (1, 2, 3, 4, 5, 6, 7, 8, 9):
-        print("Position not present! Enter again!")
+    turn = (input("player 2 enter position: "))
+    while turn not in ('1', '2', '3', '4', '5', '6', '7', '8', '9'):
+        print("Invalid Position! Enter again!")
         turn = int(input("player 1 enter position: "))
-    res = check_pos(turn)
+    res = check_pos(int(turn))
     if res == 0:
         print("Position taken! Pls enter position again")
         player2()
     else:
-        grid[turn - 1] = 'O'
+        grid[int(turn) - 1] = 'O'
 
 
 def check_pos(turn):
@@ -117,7 +117,7 @@ def main():
                     main()
                 else:
                     break
-            print(chr(27) + '[2j')
+      
             player2()
             check_pos(turn)
             print_board(grid)
